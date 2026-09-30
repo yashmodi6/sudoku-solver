@@ -1,9 +1,5 @@
 import time
 
-puzzle = (
-    "050908600800006007006020000009000070203000809010000400000030700900800004005604030"
-)
-
 type Sudoku = list[list[int]]
 
 
@@ -86,7 +82,8 @@ def solve(board: Sudoku) -> bool:
     return False
 
 
-def main() -> None:
+if __name__ == "__main__":
+    puzzle = "050908600800006007006020000009000070203000809010000400000030700900800004005604030"
     sudoku = text_to_sudoku(puzzle)
     start = time.perf_counter()
     solved_status = solve(sudoku)
@@ -94,7 +91,3 @@ def main() -> None:
     print(f"Execution time: {end - start:.6f} seconds")
     print(f"Solved: {solved_status}")
     print_sudoku(sudoku)
-
-
-if __name__ == "__main__":
-    main()
