@@ -1,15 +1,5 @@
 import time
 
-puzzle = (
-    "050908600800006007006020000009000070203000809010000400000030700900800004005604030"
-)
-puzzle1 = (
-    "200080300060070084030500209000105408000000000402706000301007040720040060004010003"
-)
-puzzle2 = (
-    "100007090030020008009600500005300900010080002600004000300000010040000007007000300"
-)
-
 type Sudoku = list[list[int]]
 
 
@@ -82,7 +72,6 @@ def solve(board: Sudoku) -> bool:
             if solve(board):
                 return True
 
-            # Backtracking:
             # If the recursive call returns False, the number we chose
             # did not lead to a solution. Undo the choice by resetting
             # the cell to 0 and try the next possible number.
@@ -95,13 +84,21 @@ def solve(board: Sudoku) -> bool:
 
 def main() -> None:
 
-    sudoku = text_to_sudoku(puzzle)
     start = time.perf_counter()
-    solved_status = solve(sudoku)
+
+    with open("puzzles.txt", "r", encoding="utf-8") as f:
+        for line in f:
+            puzzle_text = line.strip()
+
+            if not puzzle_text:
+                continue
+
+            sudoku = text_to_sudoku(puzzle_text)
+
+            solve(sudoku)
+
     end = time.perf_counter()
     print(f"Execution time: {end - start:.6f} seconds")
-    print(solved_status)
-    print_sudoku(sudoku)
 
 
 if __name__ == "__main__":
