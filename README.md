@@ -28,8 +28,16 @@ Solving times measured across 3 batch runs using `time.perf_counter()` on the 50
 
 ## Usage
 
+Solve a sample puzzle:
+
 ```bash
-python main.py
+python sudoku.py
+```
+
+Run the benchmark suite:
+
+```bash
+python benchmarking.py
 ```
 
 ## License

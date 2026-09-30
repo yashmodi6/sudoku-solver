@@ -1,5 +1,9 @@
 import time
 
+puzzle = (
+    "050908600800006007006020000009000070203000809010000400000030700900800004005604030"
+)
+
 type Sudoku = list[list[int]]
 
 
@@ -83,22 +87,13 @@ def solve(board: Sudoku) -> bool:
 
 
 def main() -> None:
-
+    sudoku = text_to_sudoku(puzzle)
     start = time.perf_counter()
-
-    with open("puzzles.txt", "r", encoding="utf-8") as f:
-        for line in f:
-            puzzle_text = line.strip()
-
-            if not puzzle_text:
-                continue
-
-            sudoku = text_to_sudoku(puzzle_text)
-
-            solve(sudoku)
-
+    solved_status = solve(sudoku)
     end = time.perf_counter()
     print(f"Execution time: {end - start:.6f} seconds")
+    print(f"Solved: {solved_status}")
+    print_sudoku(sudoku)
 
 
 if __name__ == "__main__":
